@@ -1,0 +1,93 @@
+# LLM Guardrails Documentation
+
+## Overview
+This document provides a structured overview of the **LLM Guardrails** components found in the configuration file. These components are designed to enforce security and compliance for language models by scanning inputs and outputs and applying restrictions. Below is a detailed breakdown of the guardrail components, their configurations, and implementations.
+
+---
+
+## 1. **LLMGuard Input Scanner**
+### **Description**
+Scans input prompts to detect and prevent security risks, policy violations, or undesired content before being processed by an LLM.
+
+### **Configuration Options**
+- **name (str, required)** – Type of input scanner to apply:
+  - `Anonymize`
+  - `BanCode`
+  - `BanCompetitors`
+  - `BanSubstrings`
+  - `BanTopics`
+  - `Code`
+  - `Gibberish`
+  - `InvisibleText`
+  - `Language`
+  - `PromptInjection`
+  - `Regex`
+  - `Secrets`
+  - `Sentiment`
+  - `TokenLimit`
+  - `Toxicity`
+- **config (dict, optional)** – Scanner-specific configuration settings.
+- **raise_error (bool, default: True)** – Whether to raise an error if scanning fails.
+
+### **Code Implementation**
+- Implements `LLMGuardInputScanner` using `llm_guard.input_scanners`.
+
+---
+
+## 2. **LLMGuard Output Scanner**
+### **Description**
+Scans generated outputs to enforce compliance and ensure safe content generation.
+
+### **Configuration Options**
+- **name (str, required)** – Type of output scanner to apply:
+  - `BanCode`
+  - `BanCompetitors`
+  - `BanSubstrings`
+  - `BanTopics`
+  - `Bias`
+  - `Code`
+  - `Deanonymize`
+  - `FactualConsistency`
+  - `Gibberish`
+  - `JSON`
+  - `Language`
+  - `LanguageSame`
+  - `MaliciousURLs`
+  - `NoRefusal`
+  - `ReadingTime`
+  - `Regex`
+  - `Relevance`
+  - `Sensitive`
+  - `Sentiment`
+  - `Toxicity`
+  - `URLReachability`
+- **config (dict, optional)** – Scanner-specific configuration settings.
+- **raise_error (bool, default: True)** – Whether to raise an error if scanning fails.
+
+### **Code Implementation**
+- Implements `LLMGuardOutputScanner` using `llm_guard.output_scanners`.
+
+---
+
+## 3. **LLMGuard Wrapper**
+### **Description**
+A wrapper that integrates multiple input and output scanners into an LLM pipeline to ensure prompt safety and response compliance.
+
+### **Configuration Options**
+- **llm (BaseLanguageModel, required)** – The primary LLM to be used.
+- **input_scanners (list, optional)** – List of input scanners to apply before the LLM processes prompts.
+- **output_scanners (list, optional)** – List of output scanners to apply after the LLM generates responses.
+- **raise_error (bool, default: True)** – Whether to raise an error if a scanner fails.
+
+### **Code Implementation**
+- Implements `LLMGuardWrapper` as an LLM pipeline wrapper.
+- Uses `LLMGuardModel` class to:
+  - Scan and sanitize input prompts.
+  - Validate and sanitize generated outputs.
+  - Enforce risk management policies with predefined scanners.
+
+---
+
+## Summary
+This document provides a structured reference for configuring and implementing **LLM Guardrails** in AI applications. These components enable organizations to enforce compliance, detect security threats, and maintain ethical AI interactions by scanning both inputs and outputs before and after LLM execution. The **LLMGuard Wrapper** integrates these scanners seamlessly into the AI workflow, ensuring a robust safety layer.
+
