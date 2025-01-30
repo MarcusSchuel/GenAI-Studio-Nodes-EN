@@ -1,0 +1,156 @@
+# **LangChain Agents Documentation**
+
+## **Overview**
+This document provides a detailed overview of the agents configured in the provided LangChain-based system. Each agent has specific capabilities and configuration settings tailored to different data processing and AI interaction needs.
+
+---
+
+## **1. AgentInitializer**
+### **Description**
+Initializes a LangChain agent by selecting from multiple available agent types.
+
+### **Properties**
+- **Language Model (LLM)**: Defines the AI model used.
+- **Memory**: Optional; allows agents to retain conversational history.
+- **Tools**: A list of available tools for agent execution.
+- **Agent Type**: Options include:
+  - Zero-Shot ReAct
+  - React-Docstore
+  - Self-Ask with Search
+  - Conversational ReAct
+  - OpenAI Functions
+  - JSON, CSV, SQL, and VectorStore agents
+- **Max Iterations**: Defines the number of steps before the agent stops processing.
+- **Code Implementation**: Python script defining the agent initialization logic.
+
+### **Base Classes**
+- `AgentExecutor`
+- `Callable`
+- `Chain`
+
+---
+
+## **2. CSVAgent**
+### **Description**
+Processes CSV files and extracts insights using LangChain’s `create_csv_agent`.
+
+### **Properties**
+- **LLM**: AI model used for CSV interaction.
+- **Path**: Location of the CSV file.
+- **Code Implementation**: Python script using `create_csv_agent`.
+
+### **Base Classes**
+- `AgentExecutor`
+- `Chain`
+
+### **Documentation Link**
+[CSV Agent Documentation](https://python.langchain.com/docs/modules/agents/toolkits/csv)
+
+---
+
+## **3. JsonAgent**
+### **Description**
+Handles JSON-based data processing using LangChain’s JSON Toolkit.
+
+### **Properties**
+- **LLM**: AI model used for JSON analysis.
+- **Toolkit**: JSON-specific toolset for parsing and querying.
+- **Code Implementation**: Python script using `create_json_agent`.
+
+### **Base Classes**
+- `AgentExecutor`
+- `Chain`
+
+---
+
+## **4. OpenAIConversationalAgent**
+### **Description**
+Conversational AI agent using OpenAI’s function-calling API.
+
+### **Properties**
+- **LLM Model Name**: Selectable OpenAI models (e.g., `gpt-4-turbo-preview`).
+- **Memory**: Stores conversation history.
+- **System Message**: Predefined system prompt.
+- **Tools**: List of AI tools accessible to the agent.
+- **Max Token Limit**: Controls response length.
+- **Temperature**: Adjusts response randomness.
+- **API Key & Base URL**: OpenAI credentials for API access.
+
+### **Base Classes**
+- `AgentExecutor`
+- `Chain`
+
+---
+
+## **5. SQLAgent**
+### **Description**
+Executes SQL queries against a database using an LLM.
+
+### **Properties**
+- **LLM**: AI model for query generation.
+- **Database URI**: Connection string for the SQL database.
+- **Verbose**: Debug mode option.
+- **Code Implementation**: Uses `SQLDatabaseToolkit` and `create_sql_agent`.
+
+### **Base Classes**
+- `AgentExecutor`
+- `Callable`
+- `Chain`
+
+---
+
+## **6. VectorStoreAgent**
+### **Description**
+Performs similarity searches using a vector database.
+
+### **Properties**
+- **LLM**: AI model for vector-based searches.
+- **Vector Store Toolkit**: Enables interaction with vector databases.
+- **Code Implementation**: Uses `create_vectorstore_agent`.
+
+### **Base Classes**
+- `AgentExecutor`
+- `Callable`
+- `Chain`
+
+---
+
+## **7. VectorStoreRouterAgent**
+### **Description**
+Routes queries to the appropriate vector store based on input data.
+
+### **Properties**
+- **LLM**: AI model for routing decisions.
+- **Vector Store Router Toolkit**: Manages routing logic.
+- **Code Implementation**: Uses `create_vectorstore_router_agent`.
+
+### **Base Classes**
+- `Callable`
+
+---
+
+## **8. ZeroShotAgent**
+### **Description**
+An agent using a zero-shot reasoning approach to answer questions dynamically.
+
+### **Properties**
+- **LLM**: AI model for zero-shot execution.
+- **Tools**: List of available external tools.
+- **Prompt Format Instructions**: Guides the agent's reasoning process.
+- **Prefix & Suffix**: Controls prompt structure.
+- **Code Implementation**: Uses LangChain’s zero-shot ReAct approach.
+
+### **Base Classes**
+- `BaseSingleActionAgent`
+- `ZeroShotAgent`
+- `Agent`
+- `Callable`
+
+### **Documentation Link**
+[ZeroShot Agent Documentation](https://python.langchain.com/docs/modules/agents/how_to/custom_mrkl_agent)
+
+---
+
+## **Conclusion**
+This Document provides a structured overview of the various LangChain agents configured in the system. Each agent serves a unique function, from handling structured data (CSV, SQL, JSON) to AI-powered conversation and search applications (OpenAIConversationalAgent, VectorStoreAgent). The system enables robust AI-powered workflows for various data processing needs.
+
