@@ -1,0 +1,48 @@
+# Custom Component Documentation
+
+## Overview
+
+This document provides a structured overview of the custom component found in the configuration file. The component is designed for use with LangFlow and allows users to process and return data based on specified parameters.
+
+---
+
+## 1. **CustomComponent**
+
+### **Description**
+
+A generic custom component that takes a parameter and returns the processed data.
+
+### **Configuration Options**
+
+- **param (Data, required)** – The input parameter for the component.
+
+### **Code Implementation**
+
+- Implements a `Component` class inheriting from `CustomComponent`.
+- Defines a `build_config()` method that sets the display name for the parameter.
+- Implements a `build()` method that takes `param` as input and returns it as output.
+
+```python
+from langflow import CustomComponent
+from langflow.field_typing import Data
+
+class Component(CustomComponent):
+    documentation: str = "http://docs.langflow.org/components/custom"
+
+    def build_config(self):
+        return {"param": {"display_name": "Parameter"}}
+
+    def build(self, param: Data) -> Data:
+        return param
+```
+
+### **Documentation Reference**
+
+- Full documentation can be found at [LangFlow Custom Components](http://docs.langflow.org/components/custom).
+
+---
+
+## Summary
+
+This component is a basic custom implementation that takes an input parameter and returns it as output. It is designed to be flexible and extendable within LangFlow’s custom component system.
+
