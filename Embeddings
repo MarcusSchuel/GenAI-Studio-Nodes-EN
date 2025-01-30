@@ -1,0 +1,116 @@
+# LangChain Embeddings Documentation
+
+## Overview
+This document provides a structured overview of the embedding models available in the configuration file. Each embedding model has a specific purpose, configuration options, and dependencies. Below is a detailed breakdown of all embeddings, their configurations, and their implementations.
+
+---
+
+## 1. **Amazon Bedrock Embeddings**
+### **Description**
+Embeddings model using Amazon Bedrock.
+
+### **Configuration Options**
+- **model_id (str, default: 'amazon.titan-embed-text-v1')** – Model identifier.
+- **credentials_profile_name (str, optional)** – AWS credentials profile name.
+- **endpoint_url (str, optional)** – API endpoint URL.
+- **region_name (str, optional)** – AWS region name.
+
+### **Code Implementation**
+- Implements `AmazonBedrockEmbeddingsComponent` class, using `BedrockEmbeddings` from LangChain.
+
+---
+
+## 2. **Azure OpenAI Embeddings**
+### **Description**
+Embeddings model from Azure OpenAI.
+
+### **Configuration Options**
+- **azure_endpoint (str, required)** – Azure endpoint.
+- **azure_deployment (str, required)** – Deployment name.
+- **api_version (str, default: '2023-08-01-preview')** – API version.
+- **api_key (str, required)** – API key for authentication.
+
+### **Code Implementation**
+- Implements `AzureOpenAIEmbeddingsComponent` class using `AzureOpenAIEmbeddings` from LangChain.
+
+---
+
+## 3. **Cohere Embeddings**
+### **Description**
+Embeddings model from Cohere.
+
+### **Configuration Options**
+- **cohere_api_key (str, required)** – API key for authentication.
+- **model (str, default: 'embed-english-v2.0')** – Model name.
+- **truncate (str, optional)** – Truncation behavior.
+- **max_retries (int, default: 3)** – Maximum retry attempts.
+
+### **Code Implementation**
+- Implements `CohereEmbeddingsComponent` class using `CohereEmbeddings` from LangChain.
+
+---
+
+## 4. **HuggingFace Embeddings**
+### **Description**
+Embeddings model using HuggingFace sentence transformers.
+
+### **Configuration Options**
+- **model_name (str, default: 'sentence-transformers/all-mpnet-base-v2')** – Model name.
+- **cache_folder (str, optional)** – Path for caching models.
+- **encode_kwargs (dict, optional)** – Encoding parameters.
+- **model_kwargs (dict, optional)** – Model parameters.
+- **multi_process (bool, default: False)** – Enables multi-processing.
+
+### **Code Implementation**
+- Implements `HuggingFaceEmbeddingsComponent` using `HuggingFaceEmbeddings` from LangChain.
+
+---
+
+## 5. **HuggingFace Inference API Embeddings**
+### **Description**
+Embeddings model using HuggingFace’s inference API.
+
+### **Configuration Options**
+- **api_key (str, required)** – API key.
+- **api_url (str, default: 'http://localhost:8080')** – API URL.
+- **model_name (str, default: 'BAAI/bge-large-en-v1.5')** – Model name.
+- **cache_folder (str, optional)** – Path for caching models.
+
+### **Code Implementation**
+- Implements `HuggingFaceInferenceAPIEmbeddingsComponent` using `HuggingFaceInferenceAPIEmbeddings` from LangChain.
+
+---
+
+## 6. **Ollama Embeddings**
+### **Description**
+Embeddings model using Ollama.
+
+### **Configuration Options**
+- **model (str, default: 'llama2')** – Model name.
+- **base_url (str, default: 'http://localhost:11434')** – API endpoint.
+- **temperature (float, optional)** – Model temperature setting.
+
+### **Code Implementation**
+- Implements `OllamaEmbeddingsComponent` using `OllamaEmbeddings` from LangChain.
+
+---
+
+## 7. **OpenAI Embeddings**
+### **Description**
+Embeddings model using OpenAI’s API.
+
+### **Configuration Options**
+- **model (str, default: 'text-embedding-3-small')** – Model name.
+- **openai_api_key (str, required)** – API key.
+- **chunk_size (int, default: 1000)** – Size of text chunks.
+- **embedding_ctx_length (int, default: 8191)** – Embedding context length.
+- **max_retries (int, default: 6)** – Maximum retry attempts.
+
+### **Code Implementation**
+- Implements `OpenAIEmbeddingsComponent` using `OpenAIEmbeddings` from LangChain.
+
+---
+
+## Summary
+This document provides a comprehensive reference for configuring and implementing LangChain embedding models. Each model integrates with different APIs, including Amazon Bedrock, Azure OpenAI, Cohere, HuggingFace, Ollama, and OpenAI, allowing for a variety of NLP applications.
+
